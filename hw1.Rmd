@@ -1,0 +1,14 @@
+---
+title: "redo_p8105_hw1_wch2124"
+output: github_document
+date: '2023-09-21'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library(moderndive)
+```
+
