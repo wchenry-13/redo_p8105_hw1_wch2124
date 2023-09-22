@@ -25,17 +25,18 @@ The scatter plot shows that temperature overall increases over the course of the
 
 ## problem 2 
 ```{r}
-library(tidyverse)
-library(moderndive)
 my_df = 
   tibble(
   vec_numeric = rnorm(10),
   vec_char = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
   vec_factor = factor(c("LOW", "HIGH", "LOW", "MEDIUM", "LOW","MEDIUM", "LOW", "MEDIUM", "MEDIUM", "LOW" )),
-  length(x[x > 10])
-  
+  vec_logical = vec_numeric > 0 
 )
 my_df
 mean(pull(my_df))
 ```
-the mean() function on its own does not find the mean of the data frame, but when you add the 'pull' function, it computes the mean to be 5.5. 
+the mean() function on its own does not find the mean of the data frame, but when you add the 'pull' function, it computes the mean to be 5.5
+```{r eval = FALSE}
+as.numeric(my_df$vec_factor)
+```
+the as.numeric function produced numerical values in place of my factor levels. this explains why we needed to use the 'pull' function to find the mean because it returns a column as a vector. 

@@ -2,6 +2,8 @@ redo_p8105_hw1_wch2124
 ================
 2023-09-21
 
+## problem 1
+
 ``` r
 library(tidyverse)
 ```
@@ -57,27 +59,46 @@ ggsave("p8105_hw1_wch2124.pdf")
 The scatter plot shows that temperature overall increases over the
 course of the month of January.
 
+## problem 2
+
 ``` r
 my_df = 
   tibble(
   vec_numeric = rnorm(10),
   vec_char = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-  vec_factor = factor(c("LOW", "HIGH", "LOW", "MEDIUM", "LOW","MEDIUM", "LOW", "MEDIUM", "MEDIUM", "LOW" ))
-  
+  vec_factor = factor(c("LOW", "HIGH", "LOW", "MEDIUM", "LOW","MEDIUM", "LOW", "MEDIUM", "MEDIUM", "LOW" )),
+  vec_logical = vec_numeric > 0 
 )
 my_df
 ```
 
-    ## # A tibble: 10 × 3
-    ##    vec_numeric vec_char vec_factor
-    ##          <dbl>    <dbl> <fct>     
-    ##  1       1.77         1 LOW       
-    ##  2      -0.988        2 HIGH      
-    ##  3      -0.710        3 LOW       
-    ##  4       0.938        4 MEDIUM    
-    ##  5      -1.42         5 LOW       
-    ##  6      -0.609        6 MEDIUM    
-    ##  7      -0.805        7 LOW       
-    ##  8       0.710        8 MEDIUM    
-    ##  9       0.748        9 MEDIUM    
-    ## 10      -1.16        10 LOW
+    ## # A tibble: 10 × 4
+    ##    vec_numeric vec_char vec_factor vec_logical
+    ##          <dbl>    <dbl> <fct>      <lgl>      
+    ##  1      0.186         1 LOW        TRUE       
+    ##  2      1.87          2 HIGH       TRUE       
+    ##  3      1.53          3 LOW        TRUE       
+    ##  4     -0.673         4 MEDIUM     FALSE      
+    ##  5      2.00          5 LOW        TRUE       
+    ##  6      0.990         6 MEDIUM     TRUE       
+    ##  7      1.59          7 LOW        TRUE       
+    ##  8     -1.64          8 MEDIUM     FALSE      
+    ##  9      0.0353        9 MEDIUM     TRUE       
+    ## 10      1.59         10 LOW        TRUE
+
+``` r
+mean(pull(my_df))
+```
+
+    ## [1] 0.8
+
+the mean() function on its own does not find the mean of the data frame,
+but when you add the ‘pull’ function, it computes the mean to be 5.5
+
+``` r
+as.numeric(my_df$vec_factor)
+```
+
+the as.numeric function produced numerical values in place of my factor
+levels. this explains why we needed to use the ‘pull’ function to find
+the mean because it returns a column as a vector.
